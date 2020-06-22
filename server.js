@@ -8,7 +8,7 @@ const app = require('express')();
 const server = require('https').Server(credentials, app);
 const io = require('socket.io')(server);
 
-server.listen(8080);
+server.listen(80);
 
 app.get('/', (req, res) => {
 	res.send('<h2 style="text-align: center;">Welcome to Autobook sockets!</h2>');
