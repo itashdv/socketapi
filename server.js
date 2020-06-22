@@ -64,6 +64,8 @@ const drivingSchools = io.of('drivingSchools');
 
 drivingSchools.on('connection', socket => {
 
+	console.log('Someone connected to Driving Schools namespace!');
+
 	socket.on('joinRoom', room => {
 		if (drivingSchoolsRooms.includes(room)) {
 			socket.join(room);
