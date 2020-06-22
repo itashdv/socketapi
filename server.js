@@ -37,7 +37,7 @@ io.on('connection', socket => {
 	});
 });
 
-// testing namespaces..
+// Namespaces and rooms..
 const data = [
 	{
 		apiKey: 'WPTFB3Y-WWS4JR9-QW2T45Q-D7BVCXB',
@@ -53,36 +53,19 @@ const data = [
 	}
 ];
 
-const namespacesArr = [
+const roomsArr = [
 	'e5b4f58f-e732-4961-bf05-a21669d7b675',
 	'90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde',
 	'1b9469a1-aa11-48d7-b6ef-e0400b87d4ab'
 ];
 
-const tenant1 = io.of('e5b4f58f-e732-4961-bf05-a21669d7b675');
-const tenant2 = io.of('90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde');
-const tenant3 = io.of('1b9469a1-aa11-48d7-b6ef-e0400b87d4ab');
+// create a namespace..
+const drivingSchools = io.of('drivingSchools');
 
-tenant1.on('connection', socket => {
-	console.log('Tenant e5b4f58f-e732-4961-bf05-a21669d7b675 connected!');
-	socket.emit('welcome', 'Hello, Tenant e5b4f58f-e732-4961-bf05-a21669d7b675!');
+drivingSchools.on('connection', socket => {
+	console.log('Someone connected to Driving Schools namespace!');
+	socket.emit('welcome', 'Welcome to Driving Schools area!');
 	socket.on('greetings', data => {
 		console.log(data);
-	})
-});
-
-tenant2.on('connection', socket => {
-	console.log('Tenant 90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde connected!');
-	socket.emit('welcome', 'Hello, Tenant 90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde!');
-	socket.on('greetings', data => {
-		console.log(data);
-	})
-});
-
-tenant3.on('connection', socket => {
-	console.log('Tenant 1b9469a1-aa11-48d7-b6ef-e0400b87d4ab connected!');
-	socket.emit('welcome', 'Hello, Tenant 1b9469a1-aa11-48d7-b6ef-e0400b87d4ab!');
-	socket.on('greetings', data => {
-		console.log(data);
-	})
+	});
 });
