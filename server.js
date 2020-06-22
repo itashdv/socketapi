@@ -1,3 +1,4 @@
+const fallback = require('express-history-api-fallback');
 const fs = require('fs');
 const app = require('express')();
 const https = require('https');
@@ -9,6 +10,10 @@ const server = https.createServer({
 	requestCert: false,
 	rejectUnauthorized: false
 }, app);
+
+const root = `${__dirname}/public`;
+app.use(express.static(root));
+app.use(fallback('index.html', { root: root }));
 
 server.listen(443);
 
