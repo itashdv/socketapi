@@ -8,7 +8,7 @@ var server = https.createServer({
   ca: fs.readFileSync('/etc/letsencrypt/live/autobook.world/chain.pem', 'utf8')
 }, app);
 
-server.listen(8080);
+server.listen(80);
 
 var io = require('socket.io').listen(server);
 
