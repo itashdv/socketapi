@@ -79,8 +79,9 @@ drivingSchools.on('connection', socket => {
 		console.log(message);
 	});
 
-	socket.on('error', message => {
-		console.log(message);
+	socket.on('error', error => {
+		console.log(error);
+		socket.emit('err', error);
 	});
 
 });
