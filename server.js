@@ -1,22 +1,24 @@
-// const fs = require('fs');
-// // Certificate
-// const privateKey = fs.readFileSync('/etc/letsencrypt/live/autobook.world/privkey.pem', 'utf8');
-// const certificate = fs.readFileSync('/etc/letsencrypt/live/autobook.world/cert.pem', 'utf8');
-// const ca = fs.readFileSync('/etc/letsencrypt/live/autobook.world/chain.pem', 'utf8');
-// const credentials = { key: privateKey, cert: certificate, ca: ca };
-const app = require('express')();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+var fs = require('fs');
+var app = require('express')();
+var https = require('https');
 
-server.listen(80);
+var server = https.createServer({
+  key: fs.readFileSync('/etc/letsencrypt/live/autobook.world/privkey.pem', 'utf8'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/autobook.world/cert.pem', 'utf8'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/autobook.world/chain.pem', 'utf8')
+}, app);
 
-app.get('/', (req, res) => {
-	res.send('<h2 style="text-align: center;">Welcome to Autobook sockets!</h2>');
-});
+server.listen(8080);
+
+var io = require('socket.io').listen(server);
 
 io.on('connection', socket => {
 	socket.emit('news', { hello: 'world' });
 	socket.on('my other event', data => {
 		console.log(data);
 	});
+});
+
+app.get('/', (req, res) => {
+  res.send('<h2 style="text-align: center;">Welcome to Autobook sockets!</h2>');
 });
