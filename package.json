@@ -18,7 +18,6 @@
   "homepage": "https://github.com/itashdv/socketapi#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "http": "^0.0.1-security",
     "https": "^1.0.0",
     "socket.io": "^2.3.0"
   }

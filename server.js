@@ -1,14 +1,6 @@
-var fs = require('fs');
-var app = require('express')();
-var https = require('https');
-
-// var server = https.createServer({
-//   key: fs.readFileSync('/etc/letsencrypt/live/autobook.world/privkey.pem', 'utf8'),
-//   cert: fs.readFileSync('/etc/letsencrypt/live/autobook.world/cert.pem', 'utf8'),
-//   ca: fs.readFileSync('/etc/letsencrypt/live/autobook.world/chain.pem', 'utf8'),
-//   requestCert: false,
-//   rejectUnauthorized: false
-// }, app);
+const fs = require('fs');
+const app = require('express')();
+const https = require('https');
 
 const server = https.createServer({
 	key: fs.readFileSync('/etc/letsencrypt/live/autobook.world/privkey.pem'),
@@ -20,9 +12,7 @@ const server = https.createServer({
 
 server.listen(443);
 
-// server.listen(80);
-
-var io = require('socket.io').listen(server);
+const io = require('socket.io').listen(server);
 
 io.on('connection', socket => {
 	socket.emit('news', { hello: 'world' });
