@@ -18,7 +18,7 @@ app.use(helmet());
 app.use(express.static(root));
 app.use(fallback('index.html', { root: root }));
 
-server.listen(443);
+server.listen(3000);
 
 const io = require('socket.io').listen(server);
 
