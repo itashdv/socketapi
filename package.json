@@ -1,0 +1,24 @@
+{
+  "name": "socketapi",
+  "version": "1.0.0",
+  "description": "Web sockets API for Autobook frontend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itashdv/socketapi.git"
+  },
+  "author": "iTash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itashdv/socketapi/issues"
+  },
+  "homepage": "https://github.com/itashdv/socketapi#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
+    "socket.io": "^2.3.0"
+  }
+}
