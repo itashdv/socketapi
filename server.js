@@ -1,6 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
-const fallback = require('express-history-api-fallback');
+// const fallback = require('express-history-api-fallback');
 const fs = require('fs');
 const app = express();
 const https = require('https');
@@ -13,10 +13,11 @@ const server = https.createServer({
 	rejectUnauthorized: false
 }, app);
 
-const root = `${__dirname}/build`;
+// const root = `${__dirname}/build`;
+// app.use(express.static(root));
+// app.use(fallback('index.html', { root: root }));
+
 app.use(helmet());
-app.use(express.static(root));
-app.use(fallback('index.html', { root: root }));
 
 server.listen(3000);
 
