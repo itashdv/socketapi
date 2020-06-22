@@ -19,7 +19,7 @@ const server = https.createServer({
 
 app.use(helmet());
 
-server.listen(443);
+server.listen(8080);
 
 const io = require('socket.io').listen(server);
 
