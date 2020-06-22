@@ -67,7 +67,7 @@ tenant1.on('connection', socket => {
 	console.log('Tenant e5b4f58f-e732-4961-bf05-a21669d7b675 connected!');
 	socket.emit('welcome', 'Hello, Tenant e5b4f58f-e732-4961-bf05-a21669d7b675!');
 	socket.on('greetings', data => {
-		console.log('Greetings from Tenant e5b4f58f-e732-4961-bf05-a21669d7b675!');
+		console.log(data);
 	})
 });
 
@@ -75,7 +75,7 @@ tenant2.on('connection', socket => {
 	console.log('Tenant 90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde connected!');
 	socket.emit('welcome', 'Hello, Tenant 90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde!');
 	socket.on('greetings', data => {
-		console.log('Greetings from Tenant 90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde!');
+		console.log(data);
 	})
 });
 
@@ -83,6 +83,6 @@ tenant3.on('connection', socket => {
 	console.log('Tenant 1b9469a1-aa11-48d7-b6ef-e0400b87d4ab connected!');
 	socket.emit('welcome', 'Hello, Tenant 1b9469a1-aa11-48d7-b6ef-e0400b87d4ab!');
 	socket.on('greetings', data => {
-		console.log('Greetings from Tenant 1b9469a1-aa11-48d7-b6ef-e0400b87d4ab!');
+		console.log(data);
 	})
 });
