@@ -1,6 +1,5 @@
 const express = require('express');
 const helmet = require('helmet');
-// const fallback = require('express-history-api-fallback');
 const fs = require('fs');
 const app = express();
 const https = require('https');
@@ -13,10 +12,6 @@ const server = https.createServer({
 	rejectUnauthorized: false
 }, app);
 
-// const root = `${__dirname}/build`;
-// app.use(express.static(root));
-// app.use(fallback('index.html', { root: root }));
-
 app.use(helmet());
 
 app.get('/', (req, res) => {
@@ -27,12 +22,13 @@ server.listen(8080);
 
 const io = require('socket.io').listen(server);
 
-io.origins((origin, callback) => {
-  if (origin !== 'https://autobook.world') {
-    return callback('origin not allowed', false);
-  }
-  callback(null, true);
-});
+// // Commented out for development only!..
+// io.origins((origin, callback) => {
+//   if (origin !== 'https://autobook.world') {
+//     return callback('origin not allowed', false);
+//   }
+//   callback(null, true);
+// });
 
 io.on('connection', socket => {
 	socket.emit('news', { hello: 'world' });
