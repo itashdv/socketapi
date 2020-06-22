@@ -63,34 +63,27 @@ const drivingSchoolsRooms = [
 const drivingSchools = io.of('drivingSchools');
 
 drivingSchools.on('connection', socket => {
+	try {
 
-	console.log('Someone connected to Driving Schools namespace!');
-
-	socket.on('joinRoom', room => {
-
-		try {
+		console.log('Someone connected to Driving Schools namespace!');
+		
+		socket.on('joinRoom', room => {
 			if (!drivingSchoolsRooms.includes(room)) { throw 'Driving school not found!'; }
 			socket.emit('success', `Company ${ room } found!`);
 			return;
-		} catch (error) {
-			console.log(error);
-			socket.emit('error', 'Driving school not found!');
-			return;
-		}
+		});
 
-	});
+		socket.on('errorFeedback', message => {
+			console.log(message);
+		});
 
-	socket.on('errorFeedback', message => {
-		console.log(message);
-	});
+		socket.on('successFeedback', message => {
+			console.log(message);
+		});
 
-	socket.on('successFeedback', message => {
-		console.log(message);
-	});
-
-	// console.log('Someone connected to Driving Schools namespace!');
-	// socket.emit('welcome', 'Welcome to Driving Schools area!');
-	// socket.on('greetings', data => {
-	// 	console.log(data);
-	// });
+	} catch (error) {
+		console.log(error);
+		socket.emit('error', 'Driving school not found!');
+		return;
+	}
 });
