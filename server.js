@@ -71,7 +71,7 @@ drivingSchools.on('connection', socket => {
 			socket.emit('error', 'Driving school not found!');
 		}
 	});
-	socket.on('errorFeedback', message => {
+	socket.on('error', message => {
 		console.log(message);
 	});
 	socket.on('successFeedback', message => {
