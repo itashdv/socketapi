@@ -28,7 +28,7 @@ server.listen(8080);
 const io = require('socket.io').listen(server);
 
 io.origins((origin, callback) => {
-  if (origin !== 'https://foo.example.com') {
+  if (origin !== 'https://autobook.world') {
     return callback('origin not allowed', false);
   }
   callback(null, true);
