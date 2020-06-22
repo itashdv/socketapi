@@ -8,7 +8,7 @@ const https = require('https');
 const server = https.createServer({
 	key: fs.readFileSync('/etc/letsencrypt/live/autobook.world/privkey.pem'),
 	cert: fs.readFileSync('/etc/letsencrypt/live/autobook.world/cert.pem'),
-	ca: fs.readFileSync('/etc/letsencrypt/live/autobook.world/chain.pem'),
+	ca: fs.readFileSync('/etc/letsencrypt/live/autobook.world/fullchain.pem'),
 	requestCert: false,
 	rejectUnauthorized: false
 }, app);
