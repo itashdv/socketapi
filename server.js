@@ -11,7 +11,7 @@ const server = https.createServer({
 	rejectUnauthorized: false
 }, app);
 
-const root = `${__dirname}/public`;
+const root = `${__dirname}/build`;
 app.use(express.static(root));
 app.use(fallback('index.html', { root: root }));
 
