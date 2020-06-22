@@ -1,6 +1,7 @@
+const express = require('express');
 const fallback = require('express-history-api-fallback');
 const fs = require('fs');
-const app = require('express')();
+const app = express();
 const https = require('https');
 
 const server = https.createServer({
