@@ -67,12 +67,17 @@ drivingSchools.on('connection', socket => {
 	console.log('Someone connected to Driving Schools namespace!');
 
 	socket.on('joinRoom', room => {
-		if (drivingSchoolsRooms.includes(room)) {
-			socket.join(room);
-			return socket.emit('success', `Company ${ room } found!`);
-		} else {
-			return socket.emit('error', 'Driving school not found!');
+
+		try {
+			if (!drivingSchoolsRooms.includes(room)) { throw 'Driving school not found!'; }
+			socket.emit('success', `Company ${ room } found!`);
+			return;
+		} catch (error) {
+			console.log(error);
+			socket.emit('error', 'Driving school not found!');
+			return;
 		}
+
 	});
 
 	socket.on('errorFeedback', message => {
