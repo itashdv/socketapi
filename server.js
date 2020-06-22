@@ -73,9 +73,17 @@ drivingSchools.on('connection', socket => {
 		}
 	});
 
-	console.log('Someone connected to Driving Schools namespace!');
-	socket.emit('welcome', 'Welcome to Driving Schools area!');
-	socket.on('greetings', data => {
-		console.log(data);
+	socket.on('errorFeedback', message => {
+		console.log(message);
 	});
+
+	socket.on('successFeedback', message => {
+		console.log(message);
+	});
+
+	// console.log('Someone connected to Driving Schools namespace!');
+	// socket.emit('welcome', 'Welcome to Driving Schools area!');
+	// socket.on('greetings', data => {
+	// 	console.log(data);
+	// });
 });
