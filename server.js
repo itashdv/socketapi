@@ -2,7 +2,7 @@ const app = require('express')();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-server.listen(80);
+server.listen(8080);
 
 app.get('/', (req, res) => {
 	res.send('<h2 style="text-align: center;">Welcome to Autobook sockets!</h2>');
