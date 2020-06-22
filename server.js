@@ -1,14 +1,12 @@
-const fs = require('fs');
-const app = require('express')();
-const io = require('socket.io')(server);
-
 // Certificate
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/autobook.world/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/autobook.world/cert.pem', 'utf8');
 const ca = fs.readFileSync('/etc/letsencrypt/live/autobook.world/chain.pem', 'utf8');
 const credentials = { key: privateKey, cert: certificate, ca: ca };
-
+const fs = require('fs');
+const app = require('express')();
 const server = require('https').Server(credentials, app);
+const io = require('socket.io')(server);
 
 server.listen(8080);
 
