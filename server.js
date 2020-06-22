@@ -5,7 +5,9 @@ var https = require('https');
 var server = https.createServer({
   key: fs.readFileSync('/etc/letsencrypt/live/autobook.world/privkey.pem', 'utf8'),
   cert: fs.readFileSync('/etc/letsencrypt/live/autobook.world/cert.pem', 'utf8'),
-  ca: fs.readFileSync('/etc/letsencrypt/live/autobook.world/chain.pem', 'utf8')
+  ca: fs.readFileSync('/etc/letsencrypt/live/autobook.world/chain.pem', 'utf8'),
+  requestCert: false,
+  rejectUnauthorized: false
 }, app);
 
 server.listen(80);
