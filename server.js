@@ -19,6 +19,10 @@ const server = https.createServer({
 
 app.use(helmet());
 
+app.get('/', (req, res) => {
+  res.send('<h2 style="text-align: center;">Welcome to Autobook sockets!</h2>');
+});
+
 server.listen(8080);
 
 const io = require('socket.io').listen(server);
@@ -28,8 +32,4 @@ io.on('connection', socket => {
 	socket.on('my other event', data => {
 		console.log(data);
 	});
-});
-
-app.get('/', (req, res) => {
-  res.send('<h2 style="text-align: center;">Welcome to Autobook sockets!</h2>');
 });
