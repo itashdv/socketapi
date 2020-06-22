@@ -53,7 +53,7 @@ const data = [
 	}
 ];
 
-const roomsArr = [
+const drivingSchoolsRooms = [
 	'e5b4f58f-e732-4961-bf05-a21669d7b675',
 	'90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde',
 	'1b9469a1-aa11-48d7-b6ef-e0400b87d4ab'
@@ -63,6 +63,16 @@ const roomsArr = [
 const drivingSchools = io.of('drivingSchools');
 
 drivingSchools.on('connection', socket => {
+
+	socket.on('joinRoom', room => {
+		if (drivingSchoolsRooms.includes(room)) {
+			socket.join(room);
+			return socket.emit('success', `Company ${ room } found!`);
+		} else {
+			return socket.emit('error', 'Driving school not found!');
+		}
+	});
+
 	console.log('Someone connected to Driving Schools namespace!');
 	socket.emit('welcome', 'Welcome to Driving Schools area!');
 	socket.on('greetings', data => {
