@@ -37,34 +37,8 @@ const io = require('socket.io').listen(server);
 //   callback(null, true);
 // });
 
-io.on('connection', socket => {
-	socket.emit('news', { hello: 'world' });
-	socket.on('my other event', data => {
-		console.log(data);
-	});
-});
-
-// Namespaces and rooms..
-const data = [
-	{
-		apiKey: 'WPTFB3Y-WWS4JR9-QW2T45Q-D7BVCXB',
-		uuid: 'e5b4f58f-e732-4961-bf05-a21669d7b675'
-	},
-	{
-		apiKey: 'J1M6PRH-W9DMPBA-HAK2RES-ZTN8SQG',
-		uuid: '90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde'
-	},
-	{
-		apiKey: '3EA6K88-N88MHNX-PVQY0G6-1E3X9AV',
-		uuid: '1b9469a1-aa11-48d7-b6ef-e0400b87d4ab'
-	}
-];
-
-const drivingSchoolsRooms = [
-	'e5b4f58f-e732-4961-bf05-a21669d7b675',
-	'90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde',
-	'1b9469a1-aa11-48d7-b6ef-e0400b87d4ab'
-];
+// utils..
+const validateInput = require('./utils/validateInput');
 
 // namespaces list..
 const drivingSchools = io.of('drivingSchools');
@@ -81,23 +55,11 @@ drivingSchools.on('connection', socket => {
 	});
 
 	socket.on('registerCompany', data => {
-		const {
-			name,
-			description,
-			address,
-			phone,
-			email,
-			firstname,
-			lastname,
-			patronym,
-			userphone,
-			useremail
-		} = data;
-		if (!name || !description || !address || !phone || !email || !firstname || !lastname || !patronym || !userphone || !useremail) {
-			return socket.emit('error', 'Введите все необходимые поля!');
+		const result = validateInput(data);
+		if (result.error) {
+			return socket.emit('error', result.error);
 		} else {
-			console.log(data);
-			primary.emit('registerCompany', data);
+			primary.emit('registerCompany', result.success);
 		}
 	});
 
@@ -107,3 +69,33 @@ drivingSchools.on('connection', socket => {
 	});
 
 });
+
+
+// io.on('connection', socket => {
+// 	socket.emit('news', { hello: 'world' });
+// 	socket.on('my other event', data => {
+// 		console.log(data);
+// 	});
+// });
+
+// Namespaces and rooms..
+// const data = [
+// 	{
+// 		apiKey: 'WPTFB3Y-WWS4JR9-QW2T45Q-D7BVCXB',
+// 		uuid: 'e5b4f58f-e732-4961-bf05-a21669d7b675'
+// 	},
+// 	{
+// 		apiKey: 'J1M6PRH-W9DMPBA-HAK2RES-ZTN8SQG',
+// 		uuid: '90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde'
+// 	},
+// 	{
+// 		apiKey: '3EA6K88-N88MHNX-PVQY0G6-1E3X9AV',
+// 		uuid: '1b9469a1-aa11-48d7-b6ef-e0400b87d4ab'
+// 	}
+// ];
+
+// const drivingSchoolsRooms = [
+// 	'e5b4f58f-e732-4961-bf05-a21669d7b675',
+// 	'90686b62-e25b-4b2d-8aa6-2c3bfeaa8cde',
+// 	'1b9469a1-aa11-48d7-b6ef-e0400b87d4ab'
+// ];
