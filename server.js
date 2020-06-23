@@ -80,6 +80,21 @@ drivingSchools.on('connection', socket => {
 	});
 
 	socket.on('registerCompany', data => {
+		const {
+			name,
+			description,
+			address,
+			phone,
+			email,
+			firstname,
+			lastname,
+			patronym,
+			userphone,
+			useremail
+		} = data;
+		if (!name || !description || !address || !phone || !email || !firstname || !lastname || !patronym || !userphone || !useremail) {
+			return socket.emit('error', 'Введите все необходимые поля!');
+		}
 		console.log(data);
 	});
 
