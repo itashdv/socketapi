@@ -51,17 +51,17 @@ primary.on('connection', socket => {
 			const result = await validateInput.companyRegistration(data);
 			console.log('Result from socket api');
 			console.log(result);
-			return socket.emit('registerCompany', result);
+			return socket.emit('register_company', result);
 		} catch (error) {
 			return socket.emit('error', error);
 		}
 	});
 
-	socket.on('companyRegistrationSuccess', data => socket.emit('companyRegistrationSuccess', data));
+	socket.on('company_registration_success', data => socket.emit('companyRegistrationSuccess', data));
 
-	socket.on('companyRegistrationError', error => socket.emit('error', error));
+	socket.on('company_registration_error', error => socket.emit('error', error));
 
-	socket.on('error', error => socket.emit('clientError', error));
+	socket.on('error', error => socket.emit('companyRegistrationError', error));
 
 });
 
