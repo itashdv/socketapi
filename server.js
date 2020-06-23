@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios');
 // const mongoose = require('mongoose');
 const fs = require('fs');
 const app = express();
@@ -49,19 +50,19 @@ primary.on('connection', socket => {
 	socket.on('registerCompany', async data => {
 		try {
 			const result = await validateInput.companyRegistration(data);
-			console.log('Result from socket api');
-			console.log(result);
-			return socket.emit('register_company', result);
+			const newDS = await axios({
+			  method: 'post',
+			  url: 'http://localhost:3000',
+			  data: result
+			});
+			return socket.emit('register_company_success', newDS);
 		} catch (error) {
+			console.log(error);
 			return socket.emit('error', error);
 		}
 	});
 
-	socket.on('company_registration_success', data => socket.emit('companyRegistrationSuccess', data));
-
-	socket.on('company_registration_error', error => socket.emit('error', error));
-
-	socket.on('error', error => socket.emit('companyRegistrationError', error));
+	socket.on('error', error => socket.emit('register_company_error', error));
 
 });
 
