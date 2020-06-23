@@ -56,7 +56,7 @@ primary.on('connection', socket => {
 			  data: result
 			});
 			console.log(newDS);
-			return socket.emit('register_company_success', newDS);
+			return socket.emit('register_company_success', newDS.data);
 		} catch (error) {
 			console.log(error);
 			return socket.emit('error', error);
