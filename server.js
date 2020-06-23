@@ -49,6 +49,8 @@ primary.on('connection', socket => {
 	socket.on('registerCompany', async data => {
 		try {
 			const result = await validateInput.companyRegistration(data);
+			console.log('Result from socket api');
+			console.log(result);
 			return socket.emit('registerCompany', result);
 		} catch (error) {
 			return socket.emit('error', error);
@@ -56,7 +58,7 @@ primary.on('connection', socket => {
 	});
 
 	socket.on('companyRegistrationSuccess', data => socket.emit('companyRegistrationSuccess', data));
-	
+
 	socket.on('companyRegistrationError', error => socket.emit('error', error));
 
 	socket.on('error', error => socket.emit('clientError', error));
