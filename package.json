@@ -18,8 +18,10 @@
   "homepage": "https://github.com/itashdv/socketapi#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "google-libphonenumber": "^3.2.10",
     "https": "^1.0.0",
     "mongoose": "^5.9.19",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "validator": "^13.1.1"
   }
 }
