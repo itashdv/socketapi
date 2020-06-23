@@ -18,8 +18,8 @@
   "homepage": "https://github.com/itashdv/socketapi#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "helmet": "^3.23.1",
     "https": "^1.0.0",
+    "mongoose": "^5.9.19",
     "socket.io": "^2.3.0"
   }
 }
