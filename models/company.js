@@ -4,7 +4,7 @@ const Schema = mongoose.Schema,
     model = mongoose.model.bind(mongoose),
     ObjectId = mongoose.Schema.Types.ObjectId;
 
-const accountSchema = new Schema({
+const companySchema = new Schema({
     uuid: { type: String, required: true },
     apiKey: { type: String, required: true },
     name: { type: String, required: true },
@@ -15,10 +15,9 @@ const accountSchema = new Schema({
     email: { type: String, required: true, unique: true },
     status: { type: Object, default: { active: true, message: 'Company is active' } },
     timezone: { type: String, default: 'Europe/Moscow' },
-    user: { type: Object, required: true },
-    slots: { type: Array, default: [] }
+    user: { type: Object, required: true }
 });
 
-const Account = model('Account', accountSchema);
+const Company = model('Company', companySchema);
 
-module.exports = Account;
+module.exports = Company;

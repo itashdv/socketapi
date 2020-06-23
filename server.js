@@ -68,6 +68,7 @@ const drivingSchoolsRooms = [
 
 // create a namespace..
 const drivingSchools = io.of('drivingSchools');
+
 drivingSchools.on('connection', socket => {
 
 	console.log('Someone connected to Driving Schools namespace!');
@@ -78,12 +79,8 @@ drivingSchools.on('connection', socket => {
 			: socket.emit('error', 'Driving school not found!');
 	});
 
-	socket.on('errorFeedback', message => {
-		console.log(message);
-	});
-
-	socket.on('successFeedback', message => {
-		console.log(message);
+	socket.on('registerCompany', data => {
+		console.log(data);
 	});
 
 	socket.on('error', error => {
