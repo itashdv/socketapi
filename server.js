@@ -57,6 +57,7 @@ primary.on('connection', socket => {
 			});
 			return socket.emit('register_company_success', response.data);
 		} catch (error) {
+			console.log(error.data);
 			return socket.emit('error', error);
 		}
 	});
