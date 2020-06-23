@@ -50,15 +50,13 @@ primary.on('connection', socket => {
 	socket.on('registerCompany', async data => {
 		try {
 			const result = await validateInput.companyRegistration(data);
-			const newDS = await axios({
+			const response = await axios({
 			  method: 'post',
 			  url: 'http://localhost:3000',
 			  data: result
 			});
-			console.log(newDS);
-			return socket.emit('register_company_success', newDS.data);
+			return socket.emit('register_company_success', response.data);
 		} catch (error) {
-			console.log(error);
 			return socket.emit('error', error);
 		}
 	});
