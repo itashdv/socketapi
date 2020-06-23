@@ -1,5 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const fs = require('fs');
 const app = express();
 const https = require('https');
@@ -12,14 +12,14 @@ const server = https.createServer({
 	rejectUnauthorized: false
 }, app);
 
-const connStr = 'mongodb://primaryuser:sdf87HGkdf8@localhost:27017/primary';
-mongoose.connect(connStr, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
-	if (err) {
-		console.log('Problem connecting to database!');
-	} else {
-		console.log('Connected to database!');
-	}
-});
+// const connStr = 'mongodb://primaryuser:sdf87HGkdf8@localhost:27017/primary';
+// mongoose.connect(connStr, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
+// 	if (err) {
+// 		console.log('Problem connecting to database!');
+// 	} else {
+// 		console.log('Connected to database!');
+// 	}
+// });
 
 app.get('/', (req, res) => {
   res.send('<h2 style="text-align: center;">Welcome to Autobook sockets!</h2>');
