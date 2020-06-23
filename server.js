@@ -44,23 +44,31 @@ const validateInput = require('./utils/validateInput');
 const drivingSchools = io.of('drivingSchools');
 const primary = io.of('primary');
 
-drivingSchools.on('connection', socket => {
+primary.on('connection', socket => {
 
-	console.log('Someone connected to Driving Schools namespace!');
+	socket.on('registerCompany', async data => {
+		try {
+			const result = await validateInput.companyRegistration(data);
+			return socket.emit('registerCompany', result);
+		} catch (error) {
+			return socket.emit('error', error);
+		}
+	});
+
+	socket.on('companyRegistrationSuccess', data => socket.emit('companyRegistrationSuccess', data));
+	
+	socket.on('companyRegistrationError', error => socket.emit('error', error));
+
+	socket.on('error', error => socket.emit('clientError', error));
+
+});
+
+drivingSchools.on('connection', socket => {
 
 	socket.on('joinRoom', room => {
 		drivingSchoolsRooms.includes(room)
 			? socket.emit('success', `Company ${ room } found!`)
 			: socket.emit('error', 'Driving school not found!');
-	});
-
-	socket.on('registerCompany', async data => {
-		try {
-			const result = await validateInput.companyRegistration(data);
-			return primary.emit('registerCompany', result);
-		} catch (error) {
-			return socket.emit('error', error);
-		}
 	});
 
 	socket.on('error', error => {
