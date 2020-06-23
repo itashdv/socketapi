@@ -66,8 +66,9 @@ const drivingSchoolsRooms = [
 	'1b9469a1-aa11-48d7-b6ef-e0400b87d4ab'
 ];
 
-// create a namespace..
+// namespaces list..
 const drivingSchools = io.of('drivingSchools');
+const primary = io.of('primary');
 
 drivingSchools.on('connection', socket => {
 
@@ -94,8 +95,10 @@ drivingSchools.on('connection', socket => {
 		} = data;
 		if (!name || !description || !address || !phone || !email || !firstname || !lastname || !patronym || !userphone || !useremail) {
 			return socket.emit('error', 'Введите все необходимые поля!');
+		} else {
+			console.log(data);
+			primary.emit('registerCompany', data);
 		}
-		console.log(data);
 	});
 
 	socket.on('error', error => {
