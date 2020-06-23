@@ -55,6 +55,7 @@ primary.on('connection', socket => {
 			  url: 'http://localhost:3000',
 			  data: result
 			});
+			console.log(newDS);
 			return socket.emit('register_company_success', newDS);
 		} catch (error) {
 			console.log(error);
