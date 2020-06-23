@@ -54,12 +54,12 @@ drivingSchools.on('connection', socket => {
 			: socket.emit('error', 'Driving school not found!');
 	});
 
-	socket.on('registerCompany', data => {
-		const result = validateInput(data);
-		if (result.error) {
-			return socket.emit('error', result.error);
-		} else {
-			primary.emit('registerCompany', result.success);
+	socket.on('registerCompany', async data => {
+		try {
+			const result = await validateInput.companyRegistration(data);
+			return primary.emit('registerCompany', result);
+		} catch (error) {
+			return socket.emit('error', error);
 		}
 	});
 
