@@ -27,3 +27,14 @@ app.post('/api/login', (req, res) => {
 });
 
 server.listen(3001);
+
+// websockets..
+const io = require('socket.io').listen(server);
+
+io.on('connection', socket => {
+	socket.emit('connect', 'Welcome to websockets 3001!');
+	socket.on('greetings', message => {
+		console.log(message);
+	});
+});
+
