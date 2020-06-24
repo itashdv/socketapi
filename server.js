@@ -23,7 +23,7 @@ app.post('/api/login', (req, res) => {
   const { id, name } = req.body;
   console.log(id);
   console.log(name);
-  res.json(body);
+  res.json({ id, name });
 });
 
 server.listen(3001);
