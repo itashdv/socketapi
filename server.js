@@ -20,8 +20,9 @@ app.get('/api/', (req, res) => {
 });
 
 app.post('/api/login', (req, res) => {
-  const { body } = req;
-  console.log(body);
+  const { id, name } = req.body;
+  console.log(id);
+  console.log(name);
   res.json(body);
 });
 
