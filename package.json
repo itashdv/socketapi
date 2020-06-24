@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/itashdv/socketapi#readme",
   "dependencies": {
-    "axios": "^0.19.2",
     "express": "^4.17.1",
     "google-libphonenumber": "^3.2.10",
     "https": "^1.0.0",
