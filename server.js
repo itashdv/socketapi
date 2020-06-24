@@ -1,7 +1,11 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const https = require('https');
 const fs = require('fs');
 const app = express();
+
+app.use(bodyParser.urlencoded({ limit: '10MB', extended: false }));
+app.use(bodyParser.json({ limit: '10MB', extended: true }));
 
 const server = https.createServer({
 	key: fs.readFileSync('/etc/letsencrypt/live/autobook.world/privkey.pem'),
