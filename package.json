@@ -20,10 +20,15 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "google-libphonenumber": "^3.2.10",
     "https": "^1.0.0",
     "mongoose": "^5.9.19",
     "socket.io": "^2.3.0",
     "validator": "^13.1.1"
+=======
+    "http": "^0.0.1-security",
+    "socket.io": "^2.3.0"
+>>>>>>> parent of 041762e... Added certbort certificates.
   }
 }

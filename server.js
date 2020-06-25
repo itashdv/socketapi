@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -20,6 +21,13 @@ const server = https.createServer({
 app.get('/api/', (req, res) => {
   res.send('<h2 style="text-align: center;">Welcome to API 3001!</h2>');
 });
+=======
+const app = require('express')();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+server.listen(8080);
+>>>>>>> parent of 041762e... Added certbort certificates.
 
 app.post('/api/login', (req, res) => {
   const { id, name } = req.body;
